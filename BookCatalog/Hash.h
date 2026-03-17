@@ -20,7 +20,7 @@ public:
     bool hashSearch(string title, string edition);
     bool hashInsert(string title, string edition, int pages, double price);
     bool hashDelete(string title, string edition);
-    double hashLoadFactor();
+    double hashGetLongestChain();
     void hashDisplay();
     void rehash();
 

@@ -19,7 +19,6 @@ int main()
     int pages;                     // # of pages in book, entered by user
     double price;                  // price of book, entered by user
     string input, command;
-    double idealLoadFactor;
 
     cout << "Enter the size of the hash table: ";
     cin >> size;
@@ -68,14 +67,10 @@ int main()
             hashTable1->hashDisplay();
         }
 
-        else if (command.compare("hashLoadFactor") == 0) {
-
-            idealLoadFactor = static_cast<double>(hashTable1->getNumOfElements()) / static_cast<double>(hashTable1->getSize());
+        else if (command.compare("hashGetLongestChain") == 0) {
 
             cout << fixed << setprecision(2);
-            cout << "The ideal load factor is: " << idealLoadFactor << endl;
-            cout << "My hash table real load factor is: " << hashTable1->hashLoadFactor() << endl;
-            cout << "My hash table performance ratio is: " << (hashTable1->hashLoadFactor() / idealLoadFactor) << endl;
+            cout << "My hash tables longest chain length is: " << hashTable1->hashGetLongestChain() << endl;
             cout << endl;
         }
 

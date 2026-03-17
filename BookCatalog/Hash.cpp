@@ -68,10 +68,8 @@ bool Hash::hashInsert(string title, string edition, int pages, double price)
 
 // hashDelete deletes a Book with the relevant key from the hashTable.
 // it returns true if it is deleted successfully and false otherwise
-// Note: key is the combination of title and edition
 bool Hash::hashDelete(string title, string edition)
 {
-    string fullKey = title + " " + edition;
     bool found = false;
 
     int slotToDelete = hashFunction(title + " " + edition);
@@ -93,7 +91,7 @@ bool Hash::hashDelete(string title, string edition)
 
 // This function computes hash table real load factor
 // it is the longest linked list size
-double Hash::hashLoadFactor()
+double Hash::hashGetLongestChain()
 {
     double longestSize = 0;             // tracks maximum chain across all buckets
     for (int i = 0; i < m; i++) {
@@ -113,10 +111,6 @@ void Hash::hashDisplay()
         cout << endl;
     }
 }
-
-// This is the hash function you need to design. Given a
-// string key, the function should return the slot number
-// where we should hash the key to
 
 // given a string key, return the slot number where this book should be hashed to.
 // **uses hash by multiplication method
@@ -147,10 +141,12 @@ int Hash::hashFunction(string key)
 //}
 
 void Hash::rehash() {
+    int oldSize = m;
     int newSize = m * 2;              // double number of buckets
+    m = newSize;
     LinkedList* newTable = new LinkedList[newSize];              // make a new table (array of linkedlists)
 
-    for (int i = 0; i < m; i++)
+    for (int i = 0; i < oldSize; i++)
     {
         Book* current = hashTable[i].getHead();
 
@@ -159,7 +155,7 @@ void Hash::rehash() {
             string key = current->title + " " + current->edition;
 
             // compute this books index in the new, resized table
-            int newIndex = hashFunction(key) % newSize;    
+            int newIndex = hashFunction(key);
 
             // insert this book into the new table
             newTable[newIndex].insertBook(
@@ -175,5 +171,4 @@ void Hash::rehash() {
 
     delete[] hashTable;
     hashTable = newTable;
-    m = newSize;
 }

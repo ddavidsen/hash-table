@@ -20,7 +20,7 @@ int main()
     double price;                  // price of book, entered by user
     string input, command;
 
-    cout << "Enter the size of the hash table: ";
+    cout << "Enter the inital size of the hash table: ";
     cin >> size;
     cin.ignore(20, '\n');
 

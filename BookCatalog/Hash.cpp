@@ -57,7 +57,7 @@ bool Hash::hashInsert(string title, string edition, int pages, double price)
 
         double loadFactor = (double)numOfElements / m;
 
-        if (loadFactor > 0.75)
+        if (loadFactor > 0.9)
         {
             rehash();
         }
@@ -142,7 +142,7 @@ int Hash::hashFunction(string key)
 
 void Hash::rehash() {
     int oldSize = m;
-    int newSize = m * 2;              // double number of buckets
+    int newSize = m + (m / 2);              // increase number of buckets by ~50%
     m = newSize;
     LinkedList* newTable = new LinkedList[newSize];              // make a new table (array of linkedlists)
 

@@ -1,6 +1,5 @@
-
-// Description: this is the main program that reads input from a text file,
-// it then call hash functions to execute hash commands given in the input.
+// this is the main program that reads input from a text file,
+// it then calls hash functions to execute hash commands given in the input.
 
 #include <sstream>
 #include "LinkedList.h"
@@ -9,16 +8,16 @@
 
 using namespace std;
 
-//This function used to get a Book key which is the combination of title and edition
+// This function used to get a Book key which is the combination of title and edition
 void getKey(string oneLine, string& title, string& edition);
 
 int main()
 {
-    int size = 0;
-    int numOfCommand = 0;
-    string title, edition;
-    int pages;
-    double price;
+    int size = 0;             // initial hash table size provided by user
+    int numOfCommand = 0;            // number of commands to execute
+    string title, edition;         // book key entered by user
+    int pages;                     // # of pages in book, entered by user
+    double price;                  // price of book, entered by user
     string input, command;
     double idealLoadFactor;
 
@@ -32,11 +31,11 @@ int main()
     do {
         getline(cin, input);
 
-        if (input.compare("InsertionEnd") == 0) {
+        if (input.compare("InsertionEnd") == 0) {             // end of input
             break;
         }
 
-        else {          //collecting book variables
+        else {          // collecting book objects entered by user
             stringstream ss(input);
             getline(ss, title, ';');
             getline(ss, edition, ';');
@@ -54,6 +53,7 @@ int main()
     cin >> numOfCommand;
     cin.ignore(20, '\n');
 
+    // now user can enter commands such as insert, delete, display, etc
     cout << "Enter commands: " << endl;
     for (int i = 0; i < numOfCommand; i++)
     {
@@ -62,7 +62,7 @@ int main()
         stringstream ss(input);
         getline(ss >> ws, command, ';');
 
-        //get one line command, extract the first token, if only one token
+        // get one line command, extract the first token, if only one token
         if (command.compare("hashDisplay") == 0)
         {
             hashTable1->hashDisplay();
@@ -79,7 +79,7 @@ int main()
             cout << endl;
         }
 
-        else  //more than one tokens, check the command name, extract the remaining tokens
+        else  // more than one tokens, check the command name, extract the remaining tokens
         {
             getline(ss, title, ';');
             getline(ss, edition, ';');
@@ -99,14 +99,14 @@ int main()
                 cout << endl;
             }
         }
-    } //end for loop
+    } // end for loop
     delete hashTable1;
     return 0;
 }
 
 //********************************************************************************
-//Given one line, this function extracts title and edition of a Book
-//This function is completed and given here as a study guide for extracting tokens
+// Given one line, this function extracts title and edition of a Book
+// This function is completed and given here as a study guide for extracting tokens
 void getKey(string oneLine, string& title, string& edition)
 {
     string delimiter = ";";

@@ -18,6 +18,12 @@
     <ClCompile Include="BookCatalog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Hash.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LinkedList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Hash.h">
